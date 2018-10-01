@@ -9,11 +9,6 @@ use Rhubarb\Stem\Models\Model;
 
 class ContactSearchControl extends ModelSearchControl
 {
-    public function __construct($name = "", $modelClassName)
-    {
-        parent::__construct($name, $modelClassName);
-    }
-
     protected function createCollection($matchingPhrase = "")
     {
         return ContactExample::find(
