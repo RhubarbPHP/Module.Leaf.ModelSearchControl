@@ -1,4 +1,4 @@
-Model Selection Controls
+Model Selection Controls  [packagist:rhubarbphp/module-leaf-modelselectioncontrols]
 ========================
 
 The model selection controls module provides some extended selection controls that use
