@@ -32,4 +32,14 @@ class AddContactInSituView extends View
                "age"
             ]);
     }
+
+    public function getDeploymentPackage()
+    {
+        return new LeafDeploymentPackage(__DIR__ . '/AddContactInSituViewBridge.js');
+    }
+
+    protected function getViewBridgeName()
+    {
+        return 'AddContactInSituViewBridge';
+    }
 }

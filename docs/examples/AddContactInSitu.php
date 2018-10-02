@@ -10,9 +10,9 @@ class AddContactInSitu extends Leaf
 {
     private $bindingSource;
 
-    public function __construct(&$bindingSource)
+    public function __construct($bindingSource)
     {
-        $this->bindingSource = &$bindingSource;
+        $this->bindingSource = $bindingSource;
 
         parent::__construct();
     }

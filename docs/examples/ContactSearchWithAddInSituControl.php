@@ -9,7 +9,7 @@ use Rhubarb\Stem\Models\Model;
 
 class ContactSearchWithAddInSituControl extends ModelSearchOrAddControl
 {
-    public function __construct($name = null, &$bindingSource)
+    public function __construct($name = null, $bindingSource)
     {
         parent::__construct($name, new AddContactInSitu($bindingSource));
     }

@@ -7,10 +7,10 @@ use Rhubarb\Leaf\Leaves\LeafModel;
 
 class AddContactInSituModel extends LeafModel
 {
-    public function __construct(&$bindingSource)
+    public function __construct($bindingSource)
     {
         parent::__construct();
 
-        $this->bindingSource = &$bindingSource;
+        $this->bindingSource = $bindingSource;
     }
 }
