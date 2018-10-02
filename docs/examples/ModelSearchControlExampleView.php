@@ -42,6 +42,9 @@ class ModelSearchControlExampleView extends View
 
     public function getDeploymentPackage()
     {
-        return new LeafDeploymentPackage(__DIR__.'/ModelSearchControlExampleViewBridge.js');
+        return new LeafDeploymentPackage(
+                __DIR__.'/ModelSearchControlExampleViewBridge.js',
+                __DIR__.'/styles.css'
+            );
     }
 }

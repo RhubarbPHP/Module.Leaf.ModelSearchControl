@@ -19,19 +19,30 @@
 namespace Rhubarb\Leaf\ModelSelectionControls;
 
 use Rhubarb\Leaf\Leaves\Leaf;
+use Rhubarb\Stem\Models\Model;
 
+/**
+ * Extends ModelSearchControl with support for adding an item.
+ */
 abstract class ModelSearchOrAddControl extends ModelSearchControl
 {
-    protected $addPresenter;
+    use ModelSelectionControlTrait;
+
+    protected $addLeaf;
 
     /**
      * @var ModelSearchOrAddControlModel
      */
     protected $model;
 
-    public function __construct($name, Leaf $addPresenter)
+    /**
+     * ModelSearchOrAddControl constructor.
+     * @param $name
+     * @param Leaf $addLeaf The leaf to show when adding an item.
+     */
+    public function __construct($name, Leaf $addLeaf)
     {
-        $this->addPresenter = $addPresenter;
+        $this->addLeaf = $addLeaf;
 
         parent::__construct($name);
     }
@@ -39,13 +50,15 @@ abstract class ModelSearchOrAddControl extends ModelSearchControl
     protected function onModelCreated()
     {
         // Rename the presenter to make sure we can simplify how we access it.
-        if ($this->addPresenter != null) {
-            $this->addPresenter->setName("Add");
-            $this->model->addLeaf = $this->addPresenter;
-            $this->model->hasAddPresenter = true;
-        } else {
-            $this->model->hasAddPresenter = false;
+        if ($this->addLeaf != null) {
+            $this->addLeaf->setName("Add");
+            $this->model->addLeaf = $this->addLeaf;
         }
+
+        // Hook up the event handler that returns a selection item for a given model.
+        $this->model->getItemForModelEvent->attachHandler(function(Model $model){
+            return $this->makeItemForValue($model->getUniqueIdentifier());
+        });
 
         parent::onModelCreated();
     }

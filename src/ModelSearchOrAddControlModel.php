@@ -17,19 +17,26 @@
 
 namespace Rhubarb\Leaf\ModelSelectionControls;
 
+use Rhubarb\Crown\Events\Event;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\SearchControl\SearchControlModel;
+use Rhubarb\Leaf\Leaves\Leaf;
 
 class ModelSearchOrAddControlModel extends SearchControlModel
 {
+    /**
+     * @var Leaf
+     */
     public $addLeaf;
-    
-    public $hasAddPresenter = false;
 
-    protected function getExposableModelProperties()
+    /**
+     * @var Event
+     */
+    public $getItemForModelEvent;
+
+    public function __construct()
     {
-        $list = parent::getExposableModelProperties();
-        $list[] = "hasAddPresenter";
-        
-        return $list;
+        $this->getItemForModelEvent = new Event();
+
+        parent::__construct();
     }
 }

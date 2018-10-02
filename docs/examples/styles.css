@@ -1,0 +1,22 @@
+div.results.drop-down {
+    border: 1px solid #666;
+}
+
+div.results table td {
+    padding: 3px;
+}
+
+div.results table tr {
+    border-width: 1px 0;
+}
+
+div.results table tr.active {
+    background: lightblue;
+    border-width: 1px 0;
+    border-style: dashed;
+    border-color: #999;
+}
+
+div.results table tr:hover {
+    background: cornflowerblue;
+}

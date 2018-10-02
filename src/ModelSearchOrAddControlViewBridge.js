@@ -1,57 +1,61 @@
-var bridge = function (leafPath) {
-    window.rhubarb.viewBridgeClasses.SearchControl.apply(this, arguments);
-};
+rhubarb.vb.create('ModelSearchOrAddControlViewBridge',function(parent){
+    return {
+        attachEvents: function () {
+            parent.attachEvents.call(this);
 
-bridge.prototype = new window.rhubarb.viewBridgeClasses.SearchControl();
-bridge.prototype.constructor = bridge;
+            if (!this.addButton) {
+                this.addButton = document.createElement('input');
+                this.addButton.type = 'button';
+                this.addButton.value = 'Add';
 
-bridge.prototype.createDom = function () {
-    window.rhubarb.viewBridgeClasses.SearchControl.prototype.createDom.apply(this);
-};
+                this.buttonsContainer.appendChild(this.addButton);
+                this.addLeaf = this.findChildViewBridge("Add");
 
-bridge.prototype.attachEvents = function () {
-    window.rhubarb.viewBridgeClasses.SearchControl.prototype.attachEvents.apply(this);
+                var self = this;
 
-    if (this.model.hasAddPresenter && !this.addButton) {
-        this.addButton = document.createElement('input');
-        this.addButton.type = 'button';
-        this.addButton.value = 'Add';
+                this.addLeaf.attachClientEventHandler("ItemAdded", function (item) {
+                    self.setSelectedItems([item]);
+                });
 
-        this.buttonsContainer.appendChild(this.addButton);
+                this.addLeaf.attachClientEventHandler("CancelAdd", function(){
+                    self.addLeaf.reset();
+                    self._state = 'unselected';
+                    self.updateUiState();
+                });
 
-        var self = this;
+                this.addButton.addEventListener('click',function(){
+                    self.addLeaf.reset();
+                    self._state = 'adding';
+                    self.updateUiState();
+                });
+            }
+        },
+        updateUiState: function () {
+            parent.updateUiState.call(this);
 
-        this.findViewBridge("Add").attachClientEventHandler("ItemAdded", function (item) {
-            self.setSelectedItems([item]);
-        });
+            this.addButton.style.display = 'none';
 
-        this.addButton.addEventListener('click',function(){
-            self.findChildViewBridge("Add").clearAndShow();
-        });
-    }
-};
+            switch (this._state) {
+                case "adding":
+                    this.addLeaf.show();
+                    break;
+                case "unselected":
+                    this.addButton.style.display = 'block';
+                    this.addLeaf.hide();
+                    break;
+                case "searching":
+                    this.addButton.style.display = 'block';
+                    this.addLeaf.hide();
+                    break;
+                case "searched":
+                    this.addButton.style.display = 'block';
+                    this.addLeaf.hide();
+                    break;
+                case "selected":
+                    this.addLeaf.hide();
+                    break;
+            }
 
-bridge.prototype.updateUiState = function () {
-    window.rhubarb.viewBridgeClasses.SearchControl.prototype.updateUiState.apply(this);
-
-    if (this.model.hasAddPresenter) {
-        this.addButton.style.display = 'none';
-
-        switch (this._state) {
-            case "unselected":
-                this.addButton.style.display = 'block';
-                break;
-            case "searching":
-                this.addButton.style.display = 'block';
-                break;
-            case "searched":
-                this.addButton.style.display = 'block';
-                break;
-            case "selected":
-                this.addButton.style.display = 'none';
-                break;
         }
     }
-};
-
-window.rhubarb.viewBridgeClasses.ModelSearchOrAddControlViewBridge = bridge;
+}, rhubarb.viewBridgeClasses.SearchControl);

@@ -21,6 +21,7 @@ namespace Rhubarb\Leaf\ModelSelectionControls;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\SearchControl\SearchControlView;
 use Rhubarb\Leaf\Leaves\Leaf;
 use Rhubarb\Leaf\Leaves\LeafDeploymentPackage;
+use Rhubarb\Stem\Models\Model;
 
 class ModelSearchOrAddControlView extends SearchControlView
 {
@@ -36,6 +37,12 @@ class ModelSearchOrAddControlView extends SearchControlView
         parent::createSubLeaves();
 
         $this->registerSubLeaf($this->model->addLeaf);
+
+        if ($this->model->addLeaf instanceof AddingModelLeafInterface) {
+            $this->model->addLeaf->getItemAddedEvent()->attachHandler(function (Model $model) {
+                return $this->model->getItemForModelEvent->raise($model);
+            });
+        }
     }
 
     public function printViewContent()

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d04b5c6388e2207e57fd045700822b43",
+    "content-hash": "3873dc6d278073dd5d2fae2428b554a9",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -213,16 +213,16 @@
         },
         {
             "name": "rhubarbphp/module-leaf",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RhubarbPHP/Module.Leaf.git",
-                "reference": "780a4604456e29dad25934cdc559ce4dd3bd52f4"
+                "reference": "1c1a86c3b18f9abc2e3009d5c2a02c8c98d5f347"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RhubarbPHP/Module.Leaf/zipball/780a4604456e29dad25934cdc559ce4dd3bd52f4",
-                "reference": "780a4604456e29dad25934cdc559ce4dd3bd52f4",
+                "url": "https://api.github.com/repos/RhubarbPHP/Module.Leaf/zipball/1c1a86c3b18f9abc2e3009d5c2a02c8c98d5f347",
+                "reference": "1c1a86c3b18f9abc2e3009d5c2a02c8c98d5f347",
                 "shasum": ""
             },
             "require": {
@@ -263,20 +263,20 @@
                 "presenter",
                 "rhubarb"
             ],
-            "time": "2018-09-14T10:16:39+00:00"
+            "time": "2018-10-02T21:35:30+00:00"
         },
         {
             "name": "rhubarbphp/module-leaf-common-controls",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RhubarbPHP/Module.Leaf.CommonControls.git",
-                "reference": "46946033eeaa67e11013830832c229048899b4ee"
+                "reference": "3496a0b969c709339465a570e574fce6d16185c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RhubarbPHP/Module.Leaf.CommonControls/zipball/46946033eeaa67e11013830832c229048899b4ee",
-                "reference": "46946033eeaa67e11013830832c229048899b4ee",
+                "url": "https://api.github.com/repos/RhubarbPHP/Module.Leaf.CommonControls/zipball/3496a0b969c709339465a570e574fce6d16185c3",
+                "reference": "3496a0b969c709339465a570e574fce6d16185c3",
                 "shasum": ""
             },
             "require": {
@@ -302,7 +302,7 @@
                 "presenter",
                 "rhubarb"
             ],
-            "time": "2018-10-01T20:35:31+00:00"
+            "time": "2018-10-02T21:06:07+00:00"
         },
         {
             "name": "rhubarbphp/module-stem",
