@@ -47,7 +47,15 @@ class ModelSearchOrAddControlView extends SearchControlView
 
     public function printViewContent()
     {
-        parent::printViewContent();
+
+        ?>
+        <div class="u-pos-relative c-super-search-container">
+            <label class="c-label"></label>
+            <div class="u-pos-relative">
+                <div class="c-loader c-loader--input" style="display: none"></div>
+            </div>
+        </div>
+        <?php
 
         if ($this->model->addLeaf != null) {
             print $this->model->addLeaf;
