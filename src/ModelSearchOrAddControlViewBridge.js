@@ -102,30 +102,25 @@ rhubarb.vb.create('ModelSearchOrAddControlViewBridge',function(parent){
             var itemDiv = document.createElement('div');
             itemDiv.classList.add('c-super-search__item');
 
-            var iconDiv = document.createElement('div');
-            iconDiv.classList.add('c-super-search__secondary');
-            itemDiv.appendChild(iconDiv);
-
-            var icon = document.createElement('span');
-            icon.classList.add('c-icon');
-            icon.classList.add('c-icon--cow');
-            icon.classList.add('u-gamma');
-            iconDiv.appendChild(icon);
-
             var resultDiv = document.createElement('div');
             resultDiv.classList.add('c-super-search__primary');
             itemDiv.appendChild(resultDiv);
 
-            var resultName = document.createElement('p');
-            var splitResult = item.label.split(':',2);
-            resultName.classList.add('u-bold');
-            resultName.textContent = splitResult[0];
 
-            var resultAddress = document.createElement('p');
-            resultAddress.classList.add('u-lighten');
-            resultAddress.textContent = splitResult[1];
-            resultDiv.appendChild(resultName);
-            resultDiv.appendChild(resultAddress);
+            var splitResult = item.label.split(':');
+            for (var i = 0;i < splitResult.length;i++)
+            {
+                var resultLine = document.createElement('p');
+                var classname = '';
+                if(i == 0){
+                    classname = 'u-bold'
+                } else {
+                    classname = 'u-lighten'
+                }
+                resultLine.classList.add(classname);
+                resultLine.textContent = splitResult[i];
+                resultDiv.appendChild(resultLine);
+            }
 
             itemDiv.value = item.value;
             itemDiv.data = item;
@@ -141,7 +136,7 @@ rhubarb.vb.create('ModelSearchOrAddControlViewBridge',function(parent){
         },
 
         attachSearchInterfaceToDom:function(){
-
+            //intentionally left blank to prevent parent from being called
         },
 
         createAddButton:function(){
@@ -154,21 +149,10 @@ rhubarb.vb.create('ModelSearchOrAddControlViewBridge',function(parent){
             addButtonParagraph.textContent = this.getAddButtonText();
             textContainer.appendChild(addButtonParagraph);
 
-            var iconContainer = document.createElement('div');
-            iconContainer.classList.add('c-super-search__secondary');
-
-            var icon = document.createElement('span');
-            icon.classList.add('c-icon');
-            icon.classList.add('c-icon--add_circle');
-            icon.classList.add('u-primary');
-            icon.classList.add('u-gamma');
-            iconContainer.appendChild(icon);
-
             this.addButton = document.createElement('div');
             this.addButton.classList.add('c-super-search__item');
             this.addButton.classList.add('u-fill-light');
 
-            this.addButton.appendChild(iconContainer);
             this.addButton.appendChild(textContainer);
             this.resultsList.prepend(this.addButton);
 
