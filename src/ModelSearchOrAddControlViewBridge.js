@@ -26,8 +26,11 @@ rhubarb.vb.create('ModelSearchOrAddControlViewBridge',function(parent){
             parent.updateUiState.call(this);
 
             // this.addButton.style.display = 'none';
+            if(this.loader)
+            {
+                this.loader.style.display = 'none';
+            }
 
-            debugger;
             switch (this._state) {
                 case "adding":
                     this.addLeaf.show();
@@ -39,6 +42,9 @@ rhubarb.vb.create('ModelSearchOrAddControlViewBridge',function(parent){
                 case "searching":
                     // this.addButton.style.display = 'block';
                     this.addLeaf.hide();
+                    if(this.loader){
+                        this.loader.style.display = 'block';
+                    }
                     break;
                 case "searched":
                     // this.addButton.style.display = 'block';
@@ -57,6 +63,7 @@ rhubarb.vb.create('ModelSearchOrAddControlViewBridge',function(parent){
             this.phraseBox = document.createElement("input");
             this.phraseBox.classList.add("phrase-box");
             this.phraseBox.setAttribute("type", "text");
+            this.loader = document.querySelector('.c-loader');
 
             this.selectedLabel = document.createElement("span");
             this.clearButton = document.createElement("input");
@@ -130,7 +137,6 @@ rhubarb.vb.create('ModelSearchOrAddControlViewBridge',function(parent){
             itemDiv.addEventListener('click', function () {
                 self.itemDomSelected(this);
             });
-
             return itemDiv;
         },
 

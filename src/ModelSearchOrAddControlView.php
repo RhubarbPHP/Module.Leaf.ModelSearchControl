@@ -51,6 +51,7 @@ class ModelSearchOrAddControlView extends SearchControlView
         ?>
         <div class="u-pos-relative c-super-search-container">
             <label class="c-label"></label>
+                <?= parent::printViewContent() ?>
             <div class="u-pos-relative">
                 <div class="c-loader c-loader--input" style="display: none"></div>
             </div>
